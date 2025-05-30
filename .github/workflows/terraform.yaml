@@ -29,9 +29,12 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
+      working-directory: ./terraform-gcs
 
     - name: Terraform Plan
       run: terraform plan -var="project_id=${{ secrets.GCP_PROJECT_ID }}" -var="bucket_name=${{ secrets.GCP_BUCKET_NAME }}"
+      working-directory: ./terraform-gcs
 
     - name: Terraform Apply
       run: terraform apply -auto-approve -var="project_id=${{ secrets.GCP_PROJECT_ID }}" -var="bucket_name=${{ secrets.GCP_BUCKET_NAME }}"
+      working-directory: ./terraform-gcs
